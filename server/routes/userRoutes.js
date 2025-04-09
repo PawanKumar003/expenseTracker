@@ -81,7 +81,9 @@ userRouter.post("/register", async (req, res) => {
 
     // Validate input
     if (!name || !email || !password) {
-      return res.status(400).json({ message: "All fields are required" });
+      return res
+        .status(400)
+        .json({ status: "fail", message: "All fields are required" });
     }
 
     if (password.length < 6) {
@@ -104,7 +106,7 @@ userRouter.post("/register", async (req, res) => {
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({ status: "fail", message: "Internal server error" });
   }
 });
 
@@ -193,7 +195,9 @@ userRouter.post("/login", async (req, res) => {
 
     // Validate input
     if (!email || !password) {
-      return res.status(400).json({ message: "All fields are required" });
+      return res
+        .status(400)
+        .json({ status: "fail", message: "All fields are required" });
     }
 
     if (email === "test@gmail.com" && password === "password123") {
@@ -216,7 +220,7 @@ userRouter.post("/login", async (req, res) => {
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({ status: "fail", message: "Internal server error" });
   }
 });
 
