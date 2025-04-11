@@ -1,5 +1,6 @@
 import React from "react";
 import logo from "../../assets/react.svg";
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
@@ -20,7 +21,10 @@ function Header() {
               Contact
             </li>
             <li className="ml-5 text-lg cursor-pointer hover:bg-blue-500 hover:px-[5px] hover:text-white rounded-[5px]">
-              Login
+              <Link to="/login">Login</Link>
+            </li>
+            <li className="ml-5 text-lg cursor-pointer hover:bg-blue-500 hover:px-[5px] hover:text-white rounded-[5px]">
+              <Link to="/signup">Signup</Link>
             </li>
           </ul>
         </div>
