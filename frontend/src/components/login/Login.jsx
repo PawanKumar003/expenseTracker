@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Dashboard from "../../pages/dashboard/Dashboard";
 
 function Login() {
   const navigate = useNavigate();
@@ -36,11 +37,21 @@ function Login() {
         }
       );
 
-      if (res.data.status === "success") {
-        console.log("Data Submit ");
+      console.log(res);
 
-        navigate("/signup");
+      localStorage.setItem("token", res.data.data.jwt);
+      const token = localStorage.getItem("token");
+
+      if (res.data.data.jwt === token) {
+        navigate("/dashboard");
+      } else {
+        navigate("/login");
       }
+      //   if (res.data.status === "success") {
+      //     console.log("Data Submit ");
+
+      //     navigate("/signup");
+      //   }
     } catch (Error) {
       console.log("Error:", "username and password not matched");
     }

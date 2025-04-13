@@ -9,6 +9,8 @@ import FormCompenent from "./components/form/FormCompenent";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Login from "./components/login/Login";
 import Signup from "./components/signup/Signup";
+import Dashboard from "./pages/dashboard/Dashboard";
+import { useNavigate } from "react-router-dom";
 
 const formInputs = [
   {
@@ -48,6 +50,7 @@ const formInputs = [
 
 const App = () => {
   const location = useLocation();
+  const navigate = useNavigate();
 
   const [data, setData] = useState([]);
   const [editData, seteditData] = useState(null);
@@ -120,9 +123,16 @@ const App = () => {
     //main data ko update krna h
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+
+    console.log("logout");
+    navigate("/login");
+  };
+
   return (
     <>
-      <Header />
+      <Header logout={handleLogout} />
 
       <div className="flex w-[100%] relative">
         <Sidebar />
@@ -140,6 +150,7 @@ const App = () => {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/dashboard" element={<Dashboard />} />
           </Routes>
 
           {location.pathname !== "/login" && location.pathname !== "/signup" ? (
